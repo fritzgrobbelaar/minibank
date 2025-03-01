@@ -25,6 +25,7 @@ export class AccountService {
     if (fromAccount && toAccount && fromAccount.balance >= amount) {
       fromAccount.balance -= amount;
       toAccount.balance += amount;
+      this.transactions.push({ fromId, toId, amount, date: new Date() });
     }
   }
 }
