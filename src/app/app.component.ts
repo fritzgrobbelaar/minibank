@@ -5,7 +5,7 @@ import { AccountListComponent } from './account-list/account-list.component'; //
   selector: 'app-root',
   imports: [AccountListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'minibank';
