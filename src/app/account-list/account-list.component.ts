@@ -14,11 +14,20 @@ export class AccountListComponent implements OnInit {
     { id: 2, name: 'Savings Account', balance: 5000 },
   ];
 
-  constructor() { }
+  constructor() {
+  //intensionally blank
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  console.log('non empty method')
+  }
 
-onTransfer(account: any) {
+onTransfer(account: account) {
     console.log(`Transfer button clicked for ${account.name} with balance ${account.balance}`);
   }
+}
+
+interface account   {
+name: string,
+balance: number
 }
