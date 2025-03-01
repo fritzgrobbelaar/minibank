@@ -1,6 +1,5 @@
 <h2>Welcome to MiniBank!</h2>
-<ul>
-  <li *ngFor="let account of accounts">
-    {{ account.name }} - {{ account.balance | currency }}
-  </li>
-</ul>
+<div *ngFor="let account of accounts">
+  <p>{{ account.name }} - {{ account.balance | currency }}</p>
+  <button (click)="onTransfer(account)">Transfer</button>
+</div>

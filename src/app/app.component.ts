@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AccountListComponent } from './account-list/account-list.component'; // Add this
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [AccountListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
