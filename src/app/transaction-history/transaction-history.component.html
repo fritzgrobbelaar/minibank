@@ -1,0 +1,8 @@
+<h2>Transaction History</h2>
+<button (click)="refresh()">Refresh</button>
+<ul>
+  <li *ngFor="let tx of transactions">
+    Transferred {{ tx.amount | currency }} from account {{ tx.fromId }} to
+    account {{ tx.toId }} on {{ tx.date | date }}
+  </li>
+</ul>

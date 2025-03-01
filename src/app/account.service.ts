@@ -28,4 +28,8 @@ export class AccountService {
       this.transactions.push({ fromId, toId, amount, date: new Date() });
     }
   }
+
+  getTransactions() {
+    return this.transactions;
+  }
 }
