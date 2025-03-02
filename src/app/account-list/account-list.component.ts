@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountService } from '../account.service';
+import { Account } from '../models/account';
 
 @Component({
   selector: 'app-account-list',
@@ -10,7 +11,7 @@ import { AccountService } from '../account.service';
   styleUrls: ['./account-list.component.css'],
 })
 export class AccountListComponent implements OnInit {
-  accounts: account[] = [];
+  accounts: Account[] = [];
 
   constructor(private accountService: AccountService) {}
 
@@ -18,7 +19,7 @@ export class AccountListComponent implements OnInit {
     this.accounts = this.accountService.getAccounts();
   }
 
-  onTransfer(account: account) {
+  onTransfer(account: Account) {
     console.log(
       `Transfer button clicked for ${account.name} with balance ${account.balance}`
     );
@@ -31,10 +32,4 @@ export class AccountListComponent implements OnInit {
     this.accountService.transfer(fromId, toId, amount);
     this.accounts = this.accountService.getAccounts(); // Refresh the list
   }
-}
-
-interface account {
-  name: string;
-  balance: number;
-  id: number;
 }

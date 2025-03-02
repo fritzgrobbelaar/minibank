@@ -1,0 +1,29 @@
+<h2>Schedule Recurring Payments</h2>
+<div>
+  <label>Account Name: </label>
+  <input [(ngModel)]="accountName" placeholder="e.g., Checking" />
+</div>
+<div>
+  <label>Amount: </label>
+  <input [(ngModel)]="amount" type="number" />
+</div>
+<div>
+  <label>Description: </label>
+  <input [(ngModel)]="description" placeholder="e.g., Loan Repayment" />
+</div>
+<div>
+  <label>Interval (Days): </label>
+  <input [(ngModel)]="intervalDays" type="number" />
+</div>
+<button (click)="schedulePayment()">Schedule</button>
+<button (click)="viewPayments()">View Payments</button>
+
+<h3>Recurring Payments for {{ accountName }}</h3>
+<ul>
+  <li *ngFor="let payment of payments">
+    ID: {{ payment.id }} - {{ payment.description }}:
+    {{ payment.amount | currency }} every {{ payment.intervalDays }} days, Next:
+    {{ payment.nextPaymentDate | date }},
+    <button (click)="cancelPayment(payment.id)">Cancel</button>
+  </li>
+</ul>

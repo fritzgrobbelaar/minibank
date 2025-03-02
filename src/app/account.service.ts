@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Account } from './models/account';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,19 @@ export class AccountService {
       toAccount.balance += amount;
       this.transactions.push({ fromId, toId, amount, date: new Date() });
     }
+  }
+
+  withdraw(accountName: string, amount: number): void {
+    const account = this.accounts.find((acc) => acc.name === accountName);
+    if (account && account.balance >= amount) {
+      account.balance -= amount;
+    } else {
+      console.error(`Insufficient funds or account not found: ${accountName}`);
+    }
+  }
+
+  getAccount(accountName: string): Account | undefined {
+    return this.accounts.find((acc) => acc.name === accountName);
   }
 
   getTransactions() {

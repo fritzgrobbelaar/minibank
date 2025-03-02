@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { RecurringPayment } from '../models/recurring-payment';
-import { AccountService } from '../account.service';
+import { RecurringPayment } from './models/recurring-payment';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class RecurringPaymentService {
     startDate: Date
   ): RecurringPayment {
     const payment = new RecurringPayment(
-      this.payment.length + 1,
+      this.payments.length + 1,
       accountName,
       amount,
       description,
@@ -37,22 +37,23 @@ export class RecurringPaymentService {
     );
   }
 
-  //todo
-  //     cancelPayment(id: number): void {
-  //         const payment = this.payments.find(p => p.id === id);
-  //         if (payment) {
-  //           payment.isActive = false;
-  //         }
-  //       }
-  //
-  //       private processPayments(): void {
-  //         const now = new Date();
-  //         this.payments.forEach(payment => {
-  //           if (payment.isActive && payment.nextPaymentDate <= now) {
-  //             this.accountService.withdraw(payment.accountName, payment.amount); // Assume withdraw method exists
-  //             payment.updateNextPaymentDate();
-  //             console.log(`Processed payment ID ${payment.id}: ${payment.description} for $${payment.amount}`);
-  //           }
-  //         });
-  //       }
+  cancelPayment(id: number): void {
+    const payment = this.payments.find((p) => p.id === id);
+    if (payment) {
+      payment.isActive = false;
+    }
+  }
+
+  private processPayments(): void {
+    const now = new Date();
+    this.payments.forEach((payment) => {
+      if (payment.isActive && payment.nextPaymentDate <= now) {
+        this.accountService.withdraw(payment.accountName, payment.amount); // Assume withdraw method exists
+        payment.updateNextPaymentDate();
+        console.log(
+          `Processed payment ID ${payment.id}: ${payment.description} for $${payment.amount}`
+        );
+      }
+    });
+  }
 }
